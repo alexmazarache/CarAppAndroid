@@ -1,6 +1,8 @@
-package ro.ubbcluj.cs.ilazar.mycarapplication196
+package ro.ubbcluj.cs.ilazar.mycarapplication196.todo.data
 
 import android.util.Log
+import ro.ubbcluj.cs.ilazar.mycarapplication196.core.TAG
+import ro.ubbcluj.cs.ilazar.mycarapplication196.todo.data.remote.CarApi
 
 object CarRepository {
     private var cachedItems: MutableList<Car>? = null;

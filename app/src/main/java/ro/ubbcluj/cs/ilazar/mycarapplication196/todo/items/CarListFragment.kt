@@ -1,4 +1,4 @@
-package ro.ubbcluj.cs.ilazar.mycarapplication196
+package ro.ubbcluj.cs.ilazar.mycarapplication196.todo.items
 
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_item_list.*
+import ro.ubbcluj.cs.ilazar.mycarapplication196.R
+import ro.ubbcluj.cs.ilazar.mycarapplication196.core.TAG
 
 
 class CarListFragment : Fragment() {
@@ -40,7 +42,10 @@ class CarListFragment : Fragment() {
     }
 
     private fun setupItemList() {
-        itemListAdapter = CarListAdapter(this)
+        itemListAdapter =
+            CarListAdapter(
+                this
+            )
         item_list.adapter = itemListAdapter
         itemsModel = ViewModelProvider(this).get(CarListViewModel::class.java)
         itemsModel.items.observe(viewLifecycleOwner, { items ->

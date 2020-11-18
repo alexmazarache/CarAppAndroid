@@ -1,4 +1,4 @@
-package ro.ubbcluj.cs.ilazar.mycarapplication196
+package ro.ubbcluj.cs.ilazar.mycarapplication196.core
 
 val Any.TAG: String
     get() {

@@ -1,4 +1,4 @@
-package ro.ubbcluj.cs.ilazar.mycarapplication196
+package ro.ubbcluj.cs.ilazar.mycarapplication196.todo.item
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -6,9 +6,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import ro.ubbcluj.cs.ilazar.mycarapplication196.core.TAG
+import ro.ubbcluj.cs.ilazar.mycarapplication196.todo.data.Car
+import ro.ubbcluj.cs.ilazar.mycarapplication196.todo.data.CarRepository
 
 class CarEditViewModel : ViewModel() {
-    private val mutableItem = MutableLiveData<Car>().apply { value = Car("", "","",1,false) }
+    private val mutableItem = MutableLiveData<Car>().apply { value =
+        Car(
+            "",
+            "",
+            "",
+            1,
+            false
+        )
+    }
     private val mutableFetching = MutableLiveData<Boolean>().apply { value = false }
     private val mutableCompleted = MutableLiveData<Boolean>().apply { value = false }
     private val mutableException = MutableLiveData<Exception>().apply { value = null }

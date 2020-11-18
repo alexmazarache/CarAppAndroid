@@ -1,4 +1,4 @@
-package ro.ubbcluj.cs.ilazar.mycarapplication196
+package ro.ubbcluj.cs.ilazar.mycarapplication196.todo.data
 
 data class Car(
     val id: String,

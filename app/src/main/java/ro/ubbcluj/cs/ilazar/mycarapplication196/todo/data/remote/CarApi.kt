@@ -1,10 +1,11 @@
-package ro.ubbcluj.cs.ilazar.mycarapplication196
+package ro.ubbcluj.cs.ilazar.mycarapplication196.todo.data.remote
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
+import ro.ubbcluj.cs.ilazar.mycarapplication196.todo.data.Car
 
 object CarApi {
     private const val URL = "http://192.168.68.125:3000/"
@@ -37,5 +38,6 @@ object CarApi {
         .client(client)
         .build()
 
-    val service: Service = retrofit.create(Service::class.java)
+    val service: Service = retrofit.create(
+        Service::class.java)
 }

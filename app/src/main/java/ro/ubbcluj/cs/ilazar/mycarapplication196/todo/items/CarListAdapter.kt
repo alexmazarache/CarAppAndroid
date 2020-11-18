@@ -1,4 +1,4 @@
-package ro.ubbcluj.cs.ilazar.mycarapplication196
+package ro.ubbcluj.cs.ilazar.mycarapplication196.todo.items
 
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.view_item.view.*
+import ro.ubbcluj.cs.ilazar.mycarapplication196.R
+import ro.ubbcluj.cs.ilazar.mycarapplication196.core.TAG
+import ro.ubbcluj.cs.ilazar.mycarapplication196.todo.item.CarEditFragment
+import ro.ubbcluj.cs.ilazar.mycarapplication196.todo.data.Car
 
 class CarListAdapter(
     private val fragment: Fragment

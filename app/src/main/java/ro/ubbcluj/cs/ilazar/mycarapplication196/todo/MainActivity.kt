@@ -1,10 +1,12 @@
-package ro.ubbcluj.cs.ilazar.mycarapplication196
+package ro.ubbcluj.cs.ilazar.mycarapplication196.todo
 
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import ro.ubbcluj.cs.ilazar.mycarapplication196.R
+import ro.ubbcluj.cs.ilazar.mycarapplication196.core.TAG
 
 class MainActivity : AppCompatActivity() {
 
