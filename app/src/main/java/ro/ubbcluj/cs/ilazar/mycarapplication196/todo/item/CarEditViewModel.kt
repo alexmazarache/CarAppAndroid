@@ -1,5 +1,4 @@
 package ro.ubbcluj.cs.ilazar.mycarapplication196.todo.item
-
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,16 +9,9 @@ import ro.ubbcluj.cs.ilazar.mycarapplication196.core.TAG
 import ro.ubbcluj.cs.ilazar.mycarapplication196.todo.data.Car
 import ro.ubbcluj.cs.ilazar.mycarapplication196.todo.data.CarRepository
 
+
 class CarEditViewModel : ViewModel() {
-    private val mutableItem = MutableLiveData<Car>().apply { value =
-        Car(
-            "",
-            "",
-            "",
-            1,
-            false
-        )
-    }
+    private val mutableItem = MutableLiveData<Car>().apply { value = Car("", "", "", "", 1, false) }
     private val mutableFetching = MutableLiveData<Boolean>().apply { value = false }
     private val mutableCompleted = MutableLiveData<Boolean>().apply { value = false }
     private val mutableException = MutableLiveData<Exception>().apply { value = null }
@@ -46,15 +38,16 @@ class CarEditViewModel : ViewModel() {
         }
     }
 
-    fun saveOrUpdateItem(text: String) {
+    fun saveOrUpdateItem(title: String, content: String, ) {
         viewModelScope.launch {
             Log.i(TAG, "saveOrUpdateItem...");
             val item = mutableItem.value ?: return@launch
-            item.text = text
+            item.title = title
+            item.text = content
             mutableFetching.value = true
             mutableException.value = null
             try {
-                if (item.id.isNotEmpty()) {
+                if (item._id.isNotEmpty()) {
                     mutableItem.value = CarRepository.update(item)
                 } else {
                     mutableItem.value = CarRepository.save(item)

@@ -38,8 +38,8 @@ class CarEditFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         Log.v(TAG, "onCreateView")
         return inflater.inflate(R.layout.fragment_item_edit, container, false)
@@ -48,7 +48,7 @@ class CarEditFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.v(TAG, "onViewCreated")
-        item_text.setText(itemId)
+        item_title.setText(itemId)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -57,7 +57,7 @@ class CarEditFragment : Fragment() {
         setupViewModel()
         fab.setOnClickListener {
             Log.v(TAG, "save item")
-            viewModel.saveOrUpdateItem(item_text.text.toString())
+            viewModel.saveOrUpdateItem(item_title.text.toString(), item_content.text.toString())
         }
 
     }
@@ -66,7 +66,8 @@ class CarEditFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(CarEditViewModel::class.java)
         viewModel.item.observe(viewLifecycleOwner, { item ->
             Log.v(TAG, "update items")
-            item_text.setText(item.text)
+            item_title.setText(item.title)
+            item_content.setText(item.text)
         })
         viewModel.fetching.observe(viewLifecycleOwner, { fetching ->
             Log.v(TAG, "update fetching")

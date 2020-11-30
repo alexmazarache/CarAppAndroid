@@ -15,8 +15,9 @@ import ro.ubbcluj.cs.ilazar.mycarapplication196.core.TAG
 import ro.ubbcluj.cs.ilazar.mycarapplication196.todo.item.CarEditFragment
 import ro.ubbcluj.cs.ilazar.mycarapplication196.todo.data.Car
 
+
 class CarListAdapter(
-    private val fragment: Fragment
+        private val fragment: Fragment
 ) : RecyclerView.Adapter<CarListAdapter.ViewHolder>() {
 
     var items = emptyList<Car>()
@@ -30,15 +31,15 @@ class CarListAdapter(
     init {
         onItemClick = View.OnClickListener { view ->
             val item = view.tag as Car
-            fragment.findNavController().navigate(R.id.ItemEditFragment, Bundle().apply {
-                putString(CarEditFragment.ITEM_ID, item.id)
+            fragment.findNavController().navigate(R.id.fragment_item_edit, Bundle().apply {
+                putString(CarEditFragment.ITEM_ID, item._id)
             })
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.view_item, parent, false)
+                .inflate(R.layout.view_item, parent, false)
         Log.v(TAG, "onCreateViewHolder")
         return ViewHolder(view)
     }
@@ -47,7 +48,15 @@ class CarListAdapter(
         Log.v(TAG, "onBindViewHolder $position")
         val item = items[position]
         holder.itemView.tag = item
+        holder.titleText.text = item.title
         holder.textView.text = item.text
+        holder.dateItem.text = item.date
+        holder.versionItem.text = item.version.toString()
+        if(item.version > 1){
+            holder.modifiedItem.visibility = View.VISIBLE
+        }else{
+            holder.modifiedItem.visibility = View.GONE
+        }
         holder.itemView.setOnClickListener(onItemClick)
     }
 
@@ -55,5 +64,9 @@ class CarListAdapter(
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView = view.text
+        val titleText: TextView = view.titlu
+        val dateItem: TextView = view.data
+        val versionItem: TextView = view.version
+        val modifiedItem: TextView = view.modified
     }
 }

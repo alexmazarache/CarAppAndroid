@@ -12,8 +12,8 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_item_list.*
 import ro.ubbcluj.cs.ilazar.mycarapplication196.R
+import ro.ubbcluj.cs.ilazar.mycarapplication196.auth.data.AuthRepository
 import ro.ubbcluj.cs.ilazar.mycarapplication196.core.TAG
-
 
 class CarListFragment : Fragment() {
     private lateinit var itemListAdapter: CarListAdapter
@@ -25,8 +25,8 @@ class CarListFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_item_list, container, false)
     }
@@ -34,18 +34,19 @@ class CarListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         Log.v(TAG, "onActivityCreated")
+        if (!AuthRepository.isLoggedIn) {
+            findNavController().navigate(R.id.fragment_login)
+            return;
+        }
         setupItemList()
         fab.setOnClickListener {
             Log.v(TAG, "add new item")
-            findNavController().navigate(R.id.ItemEditFragment)
+            findNavController().navigate(R.id.fragment_item_edit)
         }
     }
 
     private fun setupItemList() {
-        itemListAdapter =
-            CarListAdapter(
-                this
-            )
+        itemListAdapter = CarListAdapter(this)
         item_list.adapter = itemListAdapter
         itemsModel = ViewModelProvider(this).get(CarListViewModel::class.java)
         itemsModel.items.observe(viewLifecycleOwner, { items ->
