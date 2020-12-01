@@ -43,6 +43,10 @@ class CarListFragment : Fragment() {
             Log.v(TAG, "add new item")
             findNavController().navigate(R.id.fragment_item_edit)
         }
+        fab2.setOnClickListener{
+            Log.v(TAG,"logoutButton")
+            findNavController().navigate(R.id.fragment_login)
+        }
     }
 
     private fun setupItemList() {
